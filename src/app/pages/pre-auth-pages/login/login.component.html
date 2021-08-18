@@ -1,1 +1,100 @@
-<p>login works!</p>
+<section class="container-fluid auth-section">
+	<div class="row min-vh-100">
+		<div class="col-md-5">
+			<nav class="navbar navbar-light">
+				<a class="navbar-brand" [routerLink]="[routes.root]">
+					<!-- <img class="img-fluid w-100" src="assets/img/onetablogo_mobile.svg" alt="1tab Vendor"> -->
+					Logo
+				</a>
+			</nav>
+			<div class="d-flex flex-column justify-content-center m-auto form-content">
+				<div class="m-auto">
+					<div class="p-2">
+						<ng-container *ngIf="screen === 1">
+							<h5 class="my-2 text-center">Welcome Back :)</h5>
+							<p class="text-center mb-2">To stay connected please login.</p>
+						</ng-container>
+						<ng-container *ngIf="screen === 2">
+							<a href="javascript:;" (click)="screen = 1" class="back-link">
+								<i class="fa fa-angle-left me-2" aria-hidden="true"></i>Back
+							</a>
+							<h5 class="mt-5 mb-2 text-center">Password Verification</h5>
+							<p class="text-center mb-2">To proceed please enter your password.</p>
+						</ng-container>
+						<ng-container *ngIf="screen === 3">
+							<a href="javascript:;" (click)="screen = 1" class="back-link">
+								<i class="fa fa-angle-left me-2" aria-hidden="true"></i>Back
+							</a>
+							<h5 class="mt-5 mb-2 text-center">OTP Verification</h5>
+							<p class="text-center mb-2">
+								We have sent a verification code to your phone number. Please enter the verification
+								code below.
+							</p>
+						</ng-container>
+					</div>
+					<div class="p-2">
+						<form class="auth-form" [formGroup]="form">
+							<ng-container *ngIf="screen === 1">
+								<div class="form-label-group py-2">
+									<ngx-intl-tel-input [cssClass]="'form-control'" [preferredCountries]="telCodeOptions.preferredCountries"
+										[enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+										[searchCountryField]="[telCodeOptions.SearchCountryField.Iso2, telCodeOptions.SearchCountryField.Name]" 
+										[selectFirstCountry]="false" [selectedCountryISO]="telCodeOptions.CountryISO.India" [maxLength]="'15'"
+										[phoneValidation]="true" [separateDialCode]="false" [numberFormat]="telCodeOptions.PhoneNumberFormat.International" 
+										formControlName="mobile">
+									</ngx-intl-tel-input>
+								</div>
+								<div *ngIf="isSubmitting && formData.mobile.errors" class="err">
+									<div *ngIf="formData.mobile.errors.required">*Mobile number is required.</div>
+									<div *ngIf="formData.mobile.errors.validatePhoneNumber">*Invalid mobile number.</div>
+								</div>
+							</ng-container>
+							<ng-container *ngIf="screen === 2">
+								<div class="form-label-group py-2">
+									<input type="password" class="form-control" placeholder="Password"
+										formControlName="password">
+									<div *ngIf="isSubmitting && formData.password.errors" class="err">
+										<div *ngIf="formData.password.errors.required">*Password is required.</div>
+									</div>
+								</div>
+								<div class="form-label-group py-2 d-flex justify-content-between remme-container">
+									<div class="first">
+										<label class="custom-checkbox-container">Remember Me
+											<input type="checkbox">
+											<span class="checkmark"></span>
+										</label>
+									</div>
+									<div class="forgot-link">
+										<a href="javascript:;">Forgot Password?</a>
+									</div>
+								</div>
+							</ng-container>
+							<ng-container *ngIf="screen === 3">
+								<otp [setting]="otpSettings" (onValueChange)="onInputChange($event)"></otp>
+							</ng-container>
+							<div class="gap-2 mt-3" [ngClass]="{
+								'btn-grp': screen === 1,
+								'd-grid': screen === 2
+							}">
+								<ng-container *ngIf="screen === 1">
+									<button class="btn btn_primary w-50 p-2" (click)="nextScreen(2)">Password</button>
+									&nbsp;&nbsp;
+									<button class="btn btn_primary_outline w-50 p-2" (click)="nextScreen(3)">Get OTP</button>
+								</ng-container>
+								<button class="btn btn_primary btn-block p-2" *ngIf="screen === 2" (click)="submit()">Submit</button>
+							</div>
+						</form>
+						<div class="mt-3 form-footer" *ngIf="screen === 1">
+							Not registered yet? 
+							<!-- [routerLink]="[routes.previous + routes.signUp]" -->
+							<a href="javascript:;" >Create an account</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-7 d-none d-md-block p-0">
+			right
+		</div>
+	</div>
+</section>

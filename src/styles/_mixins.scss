@@ -1,0 +1,71 @@
+@mixin imageShape($size, $radius: 0) {
+    width: $size;
+    height: $size;
+
+    @if $radius != 0 {
+        border-radius: $radius;
+    }
+}
+
+@mixin verticalHeight($height) {
+    min-height: $height;
+}
+
+@mixin btnVariant(
+    $background,
+    $border,
+    $color,
+    $hover-background,
+    $hover-border,
+    $hover-color,
+    $disabled-background,
+    $disabled-border,
+    $disabled-color,
+    $radius: 0.25rem,
+    $box-shadow: none
+) {
+    background-color: $background;
+    color: $color;
+    @if $border != 0 {
+        border: $border;
+    }
+    @if $radius != 0 {
+        border-radius: $radius;
+    }
+
+    &:hover {
+        color: $hover-color;
+        background-color: $hover-background;
+        border-color: $hover-border;
+    }
+
+    &:disabled {
+        color: $disabled-color;
+        background-color: $disabled-background;
+        border-color: $disabled-border;
+    }
+
+    &:focus {
+        box-shadow: $box-shadow;
+    }
+}
+
+@mixin formControl (
+    $color: map-get(map-get($palette, black), light), 
+    $fs: map-get($fontSize, small),
+    $bs: none,
+    $border-color: map-get(map-get($palette, gray), light-1),
+    $border: 0,
+    $radius: 0
+) {
+    font-size: $fs;
+    color: $color;
+    border: $border;
+    border-radius: $radius;
+    
+    &:focus {
+        color: $color;
+        box-shadow: $bs;
+        border-color: $border-color
+    }
+}

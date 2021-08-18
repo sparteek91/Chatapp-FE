@@ -28,44 +28,14 @@ export class AuthService {
         });
     }
 
-    public loginViaPassword(url: string, payload: any) {
+    public login(url: string, payload: any) {
         return this.http.post<any>(url, payload).pipe(map((data: any) => {
-            if (!!data && data.access_token) {
-                this.token = data.access_token;
-				this.ls.setItem('chatapp_u_data', JSON.stringify(data));
+            if (!!data && data.status && data.jwtToken) {
+                this.token = data.jwtToken;
+				const jwtToken: string = data.jwtToken;
+				const chatapp_u_data = { ...data.data, jwtToken }
+				this.ls.setItem('chatapp_u_data', JSON.stringify(chatapp_u_data));
             }
-            return data;
-        }));
-    }
-
-	public getOTPForlogin(url: string, payload: any) {
-		return this.http.post<any>(url, payload).pipe(map((data: any) => {
-            return data;
-        }));
-	}
-
-	public loginViaOtp(url: string, payload: any) {
-		return this.http.post<any>(url, payload).pipe(map((data: any) => {
-			if (!!data && data.access_token) {
-				this.token = data.access_token;
-				this.ls.setItem('chatapp_u_data', JSON.stringify(data));
-			}
-			return data;
-        }));
-	}
-
-	public register(url: string, payload: any) {
-        return this.http.post<any>(url, payload).pipe(map((data: any) => {
-            return data;
-        }));
-    }
-
-	public verifyRegister(url: string, payload: any) {
-        return this.http.post<any>(url, payload).pipe(map((data: any) => {
-			if (!!data && data.access_token) {
-				this.token = data.access_token;
-				this.ls.setItem('chatapp_u_data', JSON.stringify(data));
-			}
             return data;
         }));
     }

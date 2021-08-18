@@ -1,0 +1,16 @@
+@media screen and (max-width: 1024px) {
+    .iti {
+        div.country-dropdown {
+            width: 285px!important;
+        }
+    }
+    .auth-container {
+        .auth-section {
+            .form-content {
+                &>div {
+                    width: 300px!important;
+                }
+            }
+        }
+    }
+}

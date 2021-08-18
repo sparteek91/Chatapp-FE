@@ -1,0 +1,7 @@
+@use "./variable";
+@use "./mixins";
+
+.form-control {
+    @include formControl();
+    border-bottom: $border-thin map-get(map-get($palette, gray), light-1);
+}

@@ -5,14 +5,18 @@ export class ApiRoutes {
 
 	// pre auth
 	public static get login(): string {
-		return this.apiBaseUrl + "auth/login/";
+		return this.apiBaseUrl + "auth/login";
+	}
+
+	public static get getOtp(): string {
+		return this.apiBaseUrl + "auth/getotp";
 	}
 
 	public static get signup(): string {
-		return this.apiBaseUrl + "auth/signup/";
+		return this.apiBaseUrl + "auth/signup";
 	}
 
 	public static get getotp(): string {
-		return this.apiBaseUrl + "auth/getotp/";
+		return this.apiBaseUrl + "auth/getotp";
 	}
 }

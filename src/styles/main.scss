@@ -1,0 +1,91 @@
+@import "./variable";
+@import "./mixins";
+@import "./responsive";
+@import "./btn";
+@import "./form";
+@import "./checkbox";
+
+body {
+    font-family: $font-family-sans-serif;
+    margin: 0;
+    line-height: 1.5;
+    padding: 0;
+    color: #444444;
+    font-size: map-get($fontSize, small);
+}
+
+// ngx-intl-tel-input
+.iti {
+    width: 100%;
+
+    .country-dropdown {
+        width: 385px!important;
+    }
+    
+    .search-container {
+        input {
+            outline: 0;
+            border-bottom: $border-thin map-get(map-get($palette, gray), light-1) !important;
+            font-size: map-get($fontSize, small);
+            color: map-get(map-get($palette, black), light);
+        }
+    }
+
+    .iti__country-list {
+        .iti__country {
+            font-size: map-get($fontSize, small);
+            color: map-get(map-get($palette, black), light);
+        }
+    }
+}
+// ---------------------------------------------------------
+
+// Custom checkbox
+
+
+// text messages
+.err {
+    color: map-get(map-get($palette, red), base);
+    font-size: map-get($fontSize, mini);
+}
+.success {
+    color: map-get(map-get($palette, green), base);
+    font-size: map-get($fontSize, mini);
+}
+// ---------------------------------------------------------
+
+// auth layouts
+.auth-container {
+    .auth-section {
+        .form-content {
+            @include verticalHeight(75vh);
+
+            & > div {
+                width: 400px;
+            }
+
+            .back-link {
+                color: map-get(map-get($palette, purple), base);
+            }
+            
+            .forgot-link {
+                a {
+                    color: map-get(map-get($palette, purple), base);
+                }
+            }
+
+            form.auth-form {
+                .btn-grp {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+            .form-footer {
+                text-align: center;
+                a {
+                    color: map-get(map-get($palette, purple), base);
+                }
+            }
+        }
+    }
+}

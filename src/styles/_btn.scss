@@ -1,0 +1,51 @@
+@use "./variable";
+@use "./mixins";
+
+//     $background,
+//     $border,
+//     $color,
+//     $hover-background,
+//     $hover-border,
+//     $hover-color,
+//     $disabled-background,
+//     $disabled-border,
+//     $disabled-color
+.btn_primary {
+    font-size: map-get($fontSize, small);
+    @include btnVariant(
+        // normal
+        map-get(map-get($palette, purple), base),
+        0,
+        map-get(map-get($palette, white), base),
+        // hover
+        map-get(map-get($palette, purple), dark-1),
+        map-get(map-get($palette, purple), dark-1),
+        map-get(map-get($palette, white), base),
+        // disabled
+        map-get(map-get($palette, purple), light-1),
+        map-get(map-get($palette, purple), light-1),
+        map-get(map-get($palette, white), base),
+        // others
+        0.25rem
+    );
+}
+
+.btn_primary_outline {
+    font-size: map-get($fontSize, small);
+    @include btnVariant(
+        // normal
+        map-get(map-get($palette, white), base),
+        $border-thin,
+        map-get(map-get($palette, purple), base),
+        // hover
+        map-get(map-get($palette, white), base),
+        map-get(map-get($palette, purple), dark-1),
+        map-get(map-get($palette, purple), dark-1),
+        // disabled
+        map-get(map-get($palette, white), base),
+        map-get(map-get($palette, purple), light-1),
+        map-get(map-get($palette, purple), light-1),
+        // others
+        0.25rem
+    );
+}

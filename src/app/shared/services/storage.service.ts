@@ -22,9 +22,9 @@ export class LocalStorage {
 	}
 
 	public getItem(key: string) {
-		if (key === 'chatapp_u_data') {
-			return localStorage.getItem(key);
-		}
+		// if (key === 'chatapp_u_data') {
+		// 	return localStorage.getItem(key);
+		// }
 		return JSON.parse(localStorage.getItem(key)!);
 	}
 }
