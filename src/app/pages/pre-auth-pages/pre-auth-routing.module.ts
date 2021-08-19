@@ -2,8 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { UnAuthGuard } from "../../shared/guards";
-import { LoginComponent } from './login/login.component';
 import { APP_ROUTES } from "../../shared/routes";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
 	{
@@ -14,14 +15,14 @@ const routes: Routes = [
 		},
 		canActivate: [UnAuthGuard],
 	},
-	// {
-	// 	path: APP_ROUTES.signUp,
-	// 	component: SignupComponent,
-	// 	data: {
-	// 		title: "Sign Up",
-	// 	},
-	// 	canActivate: [UnAuthGuard],
-	// },
+	{
+		path: APP_ROUTES.signUp,
+		component: RegisterComponent,
+		data: {
+			title: "Sign Up",
+		},
+		canActivate: [UnAuthGuard],
+	},
 	// {
 	// 	path: APP_ROUTES.forgotPassword,
 	// 	component: ForgotPasswordComponent,

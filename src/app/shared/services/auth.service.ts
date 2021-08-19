@@ -28,7 +28,7 @@ export class AuthService {
         });
     }
 
-    public login(url: string, payload: any) {
+    public authentication(url: string, payload: any) {
         return this.http.post<any>(url, payload).pipe(map((data: any) => {
             if (!!data && data.status && data.jwtToken) {
                 this.token = data.jwtToken;

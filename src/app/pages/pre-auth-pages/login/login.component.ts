@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { APP_ROUTES, ApiRoutes } from '../../../shared/routes';
-import { ToastService } from '../../../shared/services/toastr.service';
 import { AuthService } from '../../../shared/services/auth.service';
 import { DataService } from '../../../shared/services/data.service';
 import { telCodeOptions, otpSettings } from '../../../shared/utilities';
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
 	otpSettings = otpSettings;
 	telCodeOptions = telCodeOptions;
 
-	constructor(private auth: AuthService, private router: Router, private toastr: ToastService, private ds: DataService) { }
+	constructor(private auth: AuthService, private router: Router, private ds: DataService) { }
 
 	ngOnInit(): void {
 		this.intiForm();
@@ -36,7 +35,6 @@ export class LoginComponent implements OnInit {
 		this.form = new FormGroup({
 			mobile: new FormControl('', [Validators.required]),
 			logintype: new FormControl(0),	// 0: password, 1: otp
-			// hash: new FormControl('')
 		}, { 'updateOn': 'change' });
 	}
 
@@ -57,7 +55,7 @@ export class LoginComponent implements OnInit {
 		}
 	}
 
-	onInputChange(e: any) {
+	onInputChange(e: any): void {
 		if (e.length == this.otpSettings.length) {
 			// e will emit values entered as otp and,
 			this.form.get('otp')?.setValue(e);
@@ -91,7 +89,7 @@ export class LoginComponent implements OnInit {
 		this.isSubmitting = false;
 		const mobileNumber: string = this.form.get('mobile')?.value.e164Number || this.form.get('mobile')?.value;
 		this.form.get('mobile')?.setValue(mobileNumber);
-		this.auth.login(ApiRoutes.login, this.form.value).subscribe((res: any) => {
+		this.auth.authentication(ApiRoutes.login, this.form.value).subscribe((res: any) => {
 			if (res.status) {
 				this.router.navigate([APP_ROUTES.home]);
 			}

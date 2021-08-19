@@ -18,5 +18,7 @@ export const otpSettings: IOtpSettings = {
     timerType: 1,
     inputClass: 'form-control d-inline-block input-class',
     wrapperClass: 'text-center',
-    btnClass: 'btn admin_btn_primary w-100 py-2 px-5 mt-4 otp-button'
+    // btnClass: 'btn w-100 py-2 px-5 mt-4 otp-button '
+    btnClass: 'btn btn_primary w-100 mt-4 p-2'
+    // 
 }

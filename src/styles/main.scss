@@ -47,10 +47,12 @@ body {
 .err {
     color: map-get(map-get($palette, red), base);
     font-size: map-get($fontSize, mini);
+    margin-top: 0.25rem;
 }
 .success {
     color: map-get(map-get($palette, green), base);
     font-size: map-get($fontSize, mini);
+    margin-top: 0.25rem;
 }
 // ---------------------------------------------------------
 
