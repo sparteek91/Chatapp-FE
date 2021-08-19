@@ -16,8 +16,8 @@ export class ResponseInterceptor implements HttpInterceptor {
             tap((ev: HttpEvent<any>) => {
                 if (ev instanceof HttpResponse) {
                     if (request.method !== 'GET') {
-                        if (ev.body?.msg) {
-                            // this.notifier(ev.body.msg, 'success');
+                        if (ev.body?.message) {
+                            this.notifier(ev.body.message, 'success');
                         }
                     }
                 }
@@ -59,19 +59,16 @@ export class ResponseInterceptor implements HttpInterceptor {
     }
 
     getError(error: HttpErrorResponse) {
-        if (error.error.errors.field_errors) {
-            return error.error.errors.field_errors[0];
-        } else if (error.error.errors.non_field_errors) {
-            return error.error.errors.non_field_errors.raw_message[0];
+        if (!error.error.status) {
+            return error.error.message;
         }
     }
 
     private notifier(msg: string, type: string = 'success') {
         if (type === 'error') {
-            // const key: string = Object.keys(msgObj)[0]
             this.toastr.error(msg);
             return;
         }
-        this.toastr.success('Success');
+        this.toastr.success(msg);
     }
 }

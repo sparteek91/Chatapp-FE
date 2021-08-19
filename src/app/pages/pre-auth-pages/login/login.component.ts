@@ -42,19 +42,18 @@ export class LoginComponent implements OnInit {
 
 	nextScreen(screen: number): void {
 		if (this.form.get('mobile')?.invalid) {
-			console.log(this.formData)
 			this.isSubmitting = true;
 			return;
 		}
 		this.isSubmitting = false;
-		this.screen = screen;
-		if (this.screen === 2) {
+		if (screen === 2) {
+			this.screen = screen;
 			this.form.addControl('password', new FormControl('', [Validators.required]));
 			this.form.get('logintype')?.setValue(0);
-		} else if (this.screen === 3) {
+		} else if (screen === 3) {
 			this.form.addControl('otp', new FormControl('', [Validators.required]));
 			this.form.get('logintype')?.setValue(1);
-			this.getOtp();
+			this.getOtp(screen);
 		}
 	}
 
@@ -67,18 +66,18 @@ export class LoginComponent implements OnInit {
 			// if e == -1, timer has stopped and resend button enables
 		} else if (e == -2) {
 			// e == -2, resend otp button click handler
-			this.getOtp();
+			this.getOtp(3);
 		}
 	}
 
-	getOtp(): void {
-		// console.log(this.form);
+	getOtp(screen: number): void {
 		const payload: any = {
-			mobile: this.form.get('mobile')?.value.e164Number || this.form.get('mobile')?.value
+			mobile: this.form.get('mobile')?.value.e164Number || this.form.get('mobile')?.value,
+			action: 'login'
 		}
 		this.ds.post(ApiRoutes.getOtp, payload).subscribe((res: any) => {
-			// console.log(res);
 			if (res.status) {
+				this.screen = screen;
 				this.form.addControl('hash', new FormControl(res.data.hash));
 			}
 		}, err => console.log(err));
