@@ -5,3 +5,91 @@
     @include formControl();
     border-bottom: $border-thin map-get(map-get($palette, gray), light-1);
 }
+
+// custom checkbox
+.custom-checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.custom-checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    border: $border-thin map-get(map-get($palette, gray), light-1);
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom-checkbox-container input:checked ~ .checkmark {
+    background-color: map-get(map-get($palette, purple), base);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.custom-checkbox-container .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid map-get(map-get($palette, white), base);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+// -------------------------------------------------------------------
+
+// ngx-intl-tel-input
+.iti {
+    width: 100%;
+
+    .country-dropdown {
+        width: 385px!important;
+    }
+    
+    .search-container {
+        input {
+            outline: 0;
+            border-bottom: $border-thin map-get(map-get($palette, gray), light-1) !important;
+            font-size: map-get($fontSize, small);
+            color: map-get(map-get($palette, black), light);
+        }
+    }
+
+    .iti__country-list {
+        .iti__country {
+            font-size: map-get($fontSize, small);
+            color: map-get(map-get($palette, black), light);
+        }
+    }
+}
+// ---------------------------------------------------------

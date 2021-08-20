@@ -60,6 +60,16 @@
 										<div *ngIf="formData.password.errors.required">*Password is required.</div>
 									</div>
 								</div>
+								<div class="py-2">
+									<label class="custom-checkbox-container mb-0">
+										I agree to <a href="javascript:;">Terms of Service</a> and <a href="javascript:;">Privacy Policy</a>.
+										<input type="checkbox" formControlName="terms">
+										<span class="checkmark"></span>
+									</label>
+									<div *ngIf="isSubmitting && formData.terms.errors" class="err">
+										<div *ngIf="formData.terms.errors.required">*Please agree with the terms and policy.</div>
+									</div>
+								</div>
 							</ng-container>
 							<ng-container *ngIf="screen === 2">
 								<otp [setting]="otpSettings" (onValueChange)="onInputChange($event)"></otp>
@@ -68,6 +78,10 @@
 								<button class="btn btn_primary btn-block p-2" *ngIf="screen === 1" (click)="getOtp()">Get OTP</button>
 							</div>
 						</form>
+						<div class="mt-3 form-footer" *ngIf="screen === 1">
+							Already have an account? 
+							<a href="javascript:;" [routerLink]="[routes.previous + routes.login]">Login</a>
+						</div>
 					</div>
 				</div>
 			</div>

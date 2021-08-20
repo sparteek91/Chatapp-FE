@@ -40,9 +40,7 @@ export class RegisterComponent implements OnInit {
 			password: new FormControl('', [Validators.required]),
 			countryCode: new FormControl('', [Validators.required]),
 			dialCode: new FormControl('', [Validators.required]),
-			terms: new FormControl(true, [Validators.requiredTrue]),
-			// otp: new FormControl('', [Validators.required]),
-			// hash: new FormControl('', [Validators.required]),
+			terms: new FormControl(false, [Validators.requiredTrue])
 		}, { 'updateOn': 'change' });
 
 		const mobileChange: any = this.form.get('mobile')?.valueChanges.subscribe((data: any) => {

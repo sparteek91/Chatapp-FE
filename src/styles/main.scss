@@ -3,7 +3,6 @@
 @import "./responsive";
 @import "./btn";
 @import "./form";
-@import "./checkbox";
 
 body {
     font-family: $font-family-sans-serif;
@@ -13,35 +12,6 @@ body {
     color: #444444;
     font-size: map-get($fontSize, small);
 }
-
-// ngx-intl-tel-input
-.iti {
-    width: 100%;
-
-    .country-dropdown {
-        width: 385px!important;
-    }
-    
-    .search-container {
-        input {
-            outline: 0;
-            border-bottom: $border-thin map-get(map-get($palette, gray), light-1) !important;
-            font-size: map-get($fontSize, small);
-            color: map-get(map-get($palette, black), light);
-        }
-    }
-
-    .iti__country-list {
-        .iti__country {
-            font-size: map-get($fontSize, small);
-            color: map-get(map-get($palette, black), light);
-        }
-    }
-}
-// ---------------------------------------------------------
-
-// Custom checkbox
-
 
 // text messages
 .err {
@@ -91,3 +61,4 @@ body {
         }
     }
 }
+// ---------------------------------------------------------
