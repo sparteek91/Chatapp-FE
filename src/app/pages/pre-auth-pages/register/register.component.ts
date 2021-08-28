@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 			name: new FormControl('', [Validators.required]),
 			email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]),
 			mobile: new FormControl('', [Validators.required]),
-			password: new FormControl('', [Validators.required]),
+			password: new FormControl('', [Validators.required, Validators.minLength(6)]),
 			countryCode: new FormControl('', [Validators.required]),
 			dialCode: new FormControl('', [Validators.required]),
 			terms: new FormControl(false, [Validators.requiredTrue])
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
 				this.form.get('dialCode')?.setValue(data.dialCode);
 			}
 		});
-		this.subscription.add(mobileChange)
+		this.subscription.add(mobileChange);
 	}
 
 	ngOnDestroy(): void {

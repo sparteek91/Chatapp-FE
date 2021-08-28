@@ -16,7 +16,7 @@ export class ApiRoutes {
 		return this.apiBaseUrl + "auth/signup";
 	}
 
-	public static get getotp(): string {
-		return this.apiBaseUrl + "auth/getotp";
+	public static get forgotPass(): string {
+		return this.apiBaseUrl + "auth/forgot-password";
 	}
 }

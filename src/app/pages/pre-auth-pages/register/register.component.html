@@ -20,8 +20,8 @@
 							</a>
 							<h5 class="mt-5 mb-2 text-center">OTP Verification</h5>
 							<p class="text-center mb-2">
-								We have sent a verification code to your phone number. Please enter the verification
-								code below.
+								We have sent a verification code to your mobile number. Please enter the verification
+								code below and veriy its you.
 							</p>
 						</ng-container>
 					</div>
@@ -58,9 +58,10 @@
 									<input type="password" class="form-control" placeholder="Password" formControlName="password">
 									<div *ngIf="isSubmitting && formData.password.errors" class="err">
 										<div *ngIf="formData.password.errors.required">*Password is required.</div>
+										<div *ngIf="formData.password.errors.minlength">*Password should be minimum 6 character long.</div>
 									</div>
 								</div>
-								<div class="py-2">
+								<div class="py-2 privacy-input">
 									<label class="custom-checkbox-container mb-0">
 										I agree to <a href="javascript:;">Terms of Service</a> and <a href="javascript:;">Privacy Policy</a>.
 										<input type="checkbox" formControlName="terms">

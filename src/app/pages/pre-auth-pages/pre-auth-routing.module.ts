@@ -5,6 +5,7 @@ import { UnAuthGuard } from "../../shared/guards";
 import { APP_ROUTES } from "../../shared/routes";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
 	{
@@ -23,14 +24,14 @@ const routes: Routes = [
 		},
 		canActivate: [UnAuthGuard],
 	},
-	// {
-	// 	path: APP_ROUTES.forgotPassword,
-	// 	component: ForgotPasswordComponent,
-	// 	data: {
-	// 		title: "Forgot Password"
-	// 	},
-	// 	canActivate: [UnAuthGuard],
-	// }
+	{
+		path: APP_ROUTES.forgotPassword,
+		component: ForgotPasswordComponent,
+		data: {
+			title: "Forgot Password"
+		},
+		canActivate: [UnAuthGuard],
+	}
 ];
 
 @NgModule({

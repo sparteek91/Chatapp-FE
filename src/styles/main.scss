@@ -51,6 +51,12 @@ body {
                     display: flex;
                     justify-content: space-between;
                 }
+
+                .privacy-input {
+                    a {
+                        color: map-get(map-get($palette, purple), base);
+                    }
+                }
             }
             .form-footer {
                 text-align: center;
